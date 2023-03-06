@@ -16,8 +16,8 @@ database: "Suggestion"
 app.get("/get-poem", (req, res) => {
     connection.query(
         `SELECT start, continuations
-        FROM PoemTable
-        WHERE start in (SELECT start FROM PoemTable GROUP BY start HAVING count(start) >= 4)
+        FROM PoemStarts
+        WHERE start in (SELECT start FROM PoemStarts GROUP BY start HAVING count(start) >= 4)
         ORDER BY RAND()
         LIMIT 1`,
     (error, results) => {
@@ -27,7 +27,7 @@ app.get("/get-poem", (req, res) => {
     const start = results[0].start;
               connection.query(
                 `SELECT continuations
-                FROM PoemTable
+                FROM PoemStarts
                 WHERE start = "${start}"
                 ORDER BY RAND()
                 LIMIT 4`,
