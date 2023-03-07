@@ -2,7 +2,7 @@ const express = require("express");
 const mysql = require("mysql2");
 var cors = require('cors');
 const app = express();
-app.use(cors({ origin: "*f", credentials: true }))
+app.use(cors({ origin: "*", credentials: true }))
 app.use(express.json());
 const connection = mysql.createConnection({
 host: "poemratingdb.cnhdhsbkw379.us-east-1.rds.amazonaws.com",
